@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bind9
+  labels:
+    name: bind9
+spec:
+  containers:
+    - name: bind9
+      image: labbsr0x/dns-bind9
+      ports:
+        - containerPort: 53
+          protocol: UDP
+      volumeMounts:
+        - mountPath: /data
+          name: data
+  volumes:
+    - name: data
+      emptyDir: {}
