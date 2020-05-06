@@ -49,7 +49,7 @@ docker pull labbsr0x/dns-bind9
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t docker pull labbsr0x/dns-bind9 github.com/labbsr0x/docker-dns-bind9
+docker build -t labbsr0x/dns-bind9 github.com/labbsr0x/docker-dns-bind9
 ```
 
 or 
