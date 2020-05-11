@@ -17,12 +17,14 @@ create_bind_data_dir() {
 }
 
 create_pid_dir() {
-  mkdir -m 0775 -p /var/run/named
+  mkdir -p /var/run/named
+  chmod 0775 /var/run/named
   chown root:${BIND_USER} /var/run/named
 }
 
 create_bind_cache_dir() {
-  mkdir -m 0775 -p /var/cache/bind
+  mkdir -p /var/cache/bind
+  chmod 0775 /var/cache/bind
   chown root:${BIND_USER} /var/cache/bind
 }
 
@@ -32,10 +34,10 @@ create_bind_cache_dir
 
 # allow arguments to be passed to named
 if [[ ${1:0:1} = '-' ]]; then
-  EXTRA_ARGS="$@"
+  EXTRA_ARGS="$*"
   set --
-elif [[ ${1} == named || ${1} == $(which named) ]]; then
-  EXTRA_ARGS="${@:2}"
+elif [[ ${1} == named || ${1} == "$(command -v named)" ]]; then
+  EXTRA_ARGS="${*:2}"
   set --
 fi
 
