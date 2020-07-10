@@ -14,7 +14,10 @@ push:
 	@docker push ${MAINTAINER}/${PROJECT}:latest 
 
 docker-run:
-	@docker run --rm --name bind -d --publish 53:53/tcp --publish 53:53/udp --volume ${PWD}/.bind9:/data ${MAINTAINER}/${PROJECT}
+	@docker run --rm --name bind -d --publish 53:53/tcp --publish 53:53/udp --volume ${PWD}/example:/data ${MAINTAINER}/${PROJECT}
 
 docker-stop:
 	@docker stop bind
+
+create-key:
+	@docker exec -it bind create-key ${ZONE}

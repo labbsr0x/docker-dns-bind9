@@ -11,7 +11,9 @@ RUN apt-get update \
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 
-RUN chmod 755 /sbin/entrypoint.sh
+COPY create-key.sh /opt/create-key.sh
+
+RUN chmod 755 /sbin/entrypoint.sh /opt/create-key.sh
 
 EXPOSE 53/udp 53/tcp
 
