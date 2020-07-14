@@ -16,4 +16,3 @@ $TTL	604800
 
 ns1			A	192.168.0.1		; Change to desired NS1 IP
 ns2			A	192.168.0.2		; Change to desired NS2 IP
-test		A   192.168.10.10	; Change to desired Test Host IP
