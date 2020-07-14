@@ -17,13 +17,10 @@ zone "localhost" {
 	file "/etc/bind/db.local";
 };
 
-zone "example.com" { // Change to desired zone
-	type master;
-	file "/etc/bind/db.example.com"; 
-	allow-transfer {192.168.0.2; }; // Change to Secondary DNS IP
-//	allow-update {
-//          key "example.com";
-//  };
+zone "example.com" {  // Change to desired zone
+	type slave;
+	file "/etc/bind/db.example.com";	// Change to zone file path
+	masters {192.168.0.1;};				// Change to Primary DNS IP
 };
 
 
