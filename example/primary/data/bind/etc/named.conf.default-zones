@@ -20,6 +20,7 @@ zone "localhost" {
 zone "example.com" {
 	type master;
 	file "/etc/bind/db.example.com";
+	allow-transfer {192.168.0.2; };
 //	allow-update {
 //          key "example.com";
 //  };
