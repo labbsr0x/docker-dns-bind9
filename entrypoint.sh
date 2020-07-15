@@ -28,9 +28,14 @@ create_bind_cache_dir() {
   chown root:${BIND_USER} /var/cache/bind
 }
 
+create_alias_create_key(){
+  ln -s /opt/create-key.sh /bin/create-key
+}
+
 create_pid_dir
 create_bind_data_dir
 create_bind_cache_dir
+create_alias_create_key
 
 # allow arguments to be passed to named
 if [[ ${1:0:1} = '-' ]]; then

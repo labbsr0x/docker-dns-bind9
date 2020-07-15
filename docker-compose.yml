@@ -1,4 +1,5 @@
-version: '2'
+# docker-compose up -d
+version: '3.5'
 
 services:
   bind9:
@@ -8,4 +9,4 @@ services:
     - "53:53/udp"
     - "53:53/tcp"
     volumes:
-    - ./bind9:/data
+    - ./bind9:/data # Change volume path
