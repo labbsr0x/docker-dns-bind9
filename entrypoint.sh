@@ -29,6 +29,7 @@ create_bind_cache_dir() {
 }
 
 create_alias_create_key(){
+  rm -rf /bin/create-key
   ln -s /opt/create-key.sh /bin/create-key
 }
 
