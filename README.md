@@ -15,6 +15,8 @@
   - [Prerequisites](#prerequisites)
     - [Primary DNS](#primary-dns)
     - [Secondary DNS](#secondary-dns)
+    - [Testing new DNS Server](#testing-new-dns-server)
+  - [Others](#others)
 - [References](#references)
 
 # Introduction
@@ -242,6 +244,74 @@ docker-compose up -d
 ```
 
 ### Secondary DNS
+
+Clone github project on ns2 server
+
+```bash
+git clone https://github.com/labbsr0x/docker-dns-bind9.git
+```
+
+Create a directory that will be used as DNS volume
+
+```bash
+mkdir /opt/bind9
+```
+
+Copy **secondary DNS directory** and **docker-compose file**
+
+```bash
+cp -r /opt/docker-dns-bind9/example/secondary /opt/bind9/.
+
+cp /opt/docker-dns-bind9/docker-compose.yml /opt/bind9/.
+```
+
+Set volume path in **docker-compose.yml**
+
+```yml
+...
+    volumes:
+    - /opt/bind9/secondary:/data # Change volume path
+```
+
+Config the new db file and new zone in  **named.conf.default-zones**.
+
+In this example we will change **example.com** to **newdomain.com** and the file path **db.example.com** to **db.newdomain.com** and set Primary DNS IP in master field.
+
+```yml
+...
+zone "newdomain.com" { // Change to desired zone
+        type slave;
+        file "/etc/bind/db.newdomain.com";  // Change to zone file path
+        masters {10.0.10.1;};               // Change to Primary DNS IP
+};
+...
+```
+
+Start the secondary DNS with docker-compose.
+
+```bash
+docker-compose up -d
+```
+
+### Testing new DNS Server
+
+```bash
+dig -t ns newdomain.com @localhost +short
+```
+
+Result
+
+```bash
+ns1.newdomain.com.
+ns2.newdomain.com.
+```
+
+## Others
+
+`
+Example in Portuguese (pt_BR) on fabiotavarespr.dev's blog
+`
+- [Como configurar um DNS Bind9 com docker](https://fabiotavarespr.dev/posts/configurar-dns-bind9-com-docker/)
 
 # References
 
