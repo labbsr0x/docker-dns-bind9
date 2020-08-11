@@ -235,11 +235,9 @@ zone "newdomain.com" { // Change to desired zone
 ...
 ```
 
-Vamos para dentro do diretório que está o docker-compose.yml e iniciaremos o nosso novo DNS.
+Start the new DNS with docker-compose.
 
 ```bash
-cd /opt/bind9/
-
 docker-compose up -d
 ```
 
