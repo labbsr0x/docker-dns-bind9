@@ -1,7 +1,7 @@
-FROM ubuntu:bionic-20200403
+FROM ubuntu:focal-20220113
 
 ENV BIND_USER=bind \
-    BIND_VERSION=9.11.3 \
+    BIND_VERSION=9.16.1-0ubuntu2 \
     DATA_DIR=/data
 
 RUN apt-get update \
